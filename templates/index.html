@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/basic.css">
+    <link rel="stylesheet" href="static/editor.css">
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?162"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script type= "module" src="static/FileManager.js"></script>
+    <script type="module" src="static/console.js"></script>
+</head>
+<body>
+    <div class="allwrapper">
+        <div class="titlewrapper">
+            <div class="title" files_shown="true">
+                Dulang IDE
+            </div>
+            <a href="/import">IMPORT</a>
+        </div>
+        <div class="mainwrapper">
+            <div class="leftwrapper">
+                <div class="fcontainer">
+                    <div class="add_file">
+                            <input placeholder="new file">
+                            <div class="aficwrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            </div>
+                        </div>
+                </div>
+                <div class="leftbtn">run</div>
+                <div class="delimiter"></div>
+                <div class="leftbtn" id="promptbtn">connect</div>
+            </div>
+            <div class="code">
+                <div class="tascrollfix">
+                        <div class="tawrapper">
+                                <div class="lineno"></div>
+                                <textarea id="fcontent">write "hello world"</textarea>
+                        </div>
+                </div>
+                <div class="terminal" show="false">
+                    <textarea id="prompt" class="tview"  readonly="true"> </textarea>
+                    <input type="text" class="prompt_in">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="authwidget">
+        <div class="authblock">
+                <div id="vk_auth" class="vk_auth"></div>
+                <div class=authmesg>
+                    <b>Вход</b>
+                    <p>
+                        Мы не крадем, не используем ваши личные данные 
+                        и тем более не передаем третьим лицам. 
+                        Все, что мы используем - vkid, который служит для 
+                        идентификации в нашей файловой системе: мы сохраняем ваши 
+                        файлы так, чтобы они были доступны с любого устройства.
+                    
+                        Как бы то ни было, можете войти без авторизации - 
+                        тогда будет недоступна сессия в виртуальную машину 
+                        и все данные пропадут при выходе
+                    </p>
+                    <div onclick = "go_unauthed()" class="pseudo_auth">Войти без авторизации</div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
