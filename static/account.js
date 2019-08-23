@@ -5,7 +5,7 @@ export let Account = {
         this.update()
         if(!this.valid_id()){
             //try to push auth
-            VK.init({apiId: 7107546})
+            VK.init({apiId: 7080696})
             VK.Widgets.Auth("vk_auth", {"onAuth": data=>{
                 document.cookie = "vkid="+data.uid + ";name="+data.first_name
             }})
