@@ -76,7 +76,6 @@ let FileManager = {
         node.delim = delim
         node.appendChild(fname)
         node.appendChild(delim)
-        //set_hover_color.call(node, "var(--color-primary)")
         node.onclick = ()=>{
             if(FileManager.active)
                 FileManager.active.delim.removeAttribute("active")

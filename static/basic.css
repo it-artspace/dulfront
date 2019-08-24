@@ -30,7 +30,7 @@ html, body{
 }
 
 .mainwrapper{
-    top:6vh;
+    top:7vh;
     display:flex;
     flex-direction: row;
     flex:1 0 auto;
@@ -48,7 +48,6 @@ html, body{
     color:white;
     font-weight: 100;
     min-width: 22vw;
-    max-width: 22vw;
 }
 
 .fcontainer{

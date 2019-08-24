@@ -8,6 +8,8 @@ export let Account = {
             VK.init({apiId: 7080696})
             VK.Widgets.Auth("vk_auth", {"onAuth": data=>{
                 document.cookie = "vkid="+data.uid + ";name="+data.first_name
+                Account.update()
+                auth_widget.style.display = "none"
             }})
             document.querySelector(".pseudo_auth").onclick = ()=>{
                 document.cookie="vkid=temp;name="
