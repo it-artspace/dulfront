@@ -1,6 +1,5 @@
 let http    = require("http")
 var https = require('https');
-var http = require('http')
 let fs      = require("fs")
 let express = require("express")
 var options = {
