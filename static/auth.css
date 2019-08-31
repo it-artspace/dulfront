@@ -1,0 +1,29 @@
+.screen_block{
+    background-color: var(--color-primary);
+    opacity: 0.5;
+    display:none; /* changed to flex */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    z-index: -1; /* changed to 2 to overcover code editor*/
+}
+
+.authcontainer{
+    background-color: var(--color-primary-light);
+    border-radius: 1rem;
+    flex-direction: column;
+    display:flex;
+    font-family: 'Roboto', 'sans-serif';
+    font-size:2rem;
+    align-items: center;
+}
+
+
+.awcontainer{
+    display: flex;
+    flex:1;
+}

@@ -4,6 +4,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/basic.css">
     <link rel="stylesheet" href="static/editor.css">
+    <link rel="stylesheet" href="static/auth.css">
     <script type="text/javascript" src="https://vk.com/js/api/openapi.js?162"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
@@ -32,8 +33,6 @@
                         </div>
                 </div>
                 <div class="leftbtn">run</div>
-                <div class="delimiter"></div>
-                <div class="leftbtn" id="promptbtn">connect</div>
             </div>
             <div class="code">
                 <div class="tascrollfix">
@@ -44,31 +43,18 @@
                 </div>
                 <div class="terminal" show="false">
                     <textarea id="prompt" class="tview"  readonly="true"> </textarea>
-                    <input type="text" class="prompt_in">
                 </div>
                 
             </div>
         </div>
     </div>
-    <div class="authwidget">
-        <div class="authblock">
+   <div class="screen_block">
+       <div class = "authcontainer">
+            <h2>Вход</h2>
+            <div class="awcontainer">
                 <div id="vk_auth" class="vk_auth"></div>
-                <div class=authmesg>
-                    <b>Вход</b>
-                    <p>
-                        Мы не крадем, не используем ваши личные данные 
-                        и тем более не передаем третьим лицам. 
-                        Все, что мы используем - vkid, который служит для 
-                        идентификации в нашей файловой системе: мы сохраняем ваши 
-                        файлы так, чтобы они были доступны с любого устройства.
-                    
-                        Как бы то ни было, можете войти без авторизации - 
-                        тогда будет недоступна сессия в виртуальную машину 
-                        и все данные пропадут при выходе
-                    </p>
-                    <div onclick = "go_unauthed()" class="pseudo_auth">Войти без авторизации</div>
-                </div>
-        </div>
-    </div>
+            </div>
+       </div>
+   </div>
 </body>
 </html>

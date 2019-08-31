@@ -1,4 +1,5 @@
 import { Account } from "./account.js"
+import {FileManager} from "./FileManager.js"
 let console = {
     mView: document.querySelector("#prompt"),
     connect(){
@@ -7,22 +8,17 @@ let console = {
         console.socket.on("output", message=>{
             console.mView.value += message
         })
-        document.querySelector("#promptbtn").onclick = ()=>{
+        document.querySelector(".leftbtn").onclick = ()=>{
             console.mView.parentNode.style.display = "none"
-            document.querySelector("#promptbtn").onclick = console.connect
+            document.querySelector(".leftbtn").onclick = console.connect
         }
     },
-    send(cmdString){
-        console.socket.emit("command", {uid:Account.vkid, cmd: cmdString})
+    send(){
+        console.socket.emit("command", {uid:Account.vkid, fname: FileManager.active.name})
     }
 }
 
-document.querySelector("#promptbtn").onclick = console.connect
-let cmdin = document.querySelector(".prompt_in")
-cmdin.onkeydown = (e)=>{
-    if(e.key == 'Enter'){
-        e.preventDefault()
-        console.send(cmdin.value)
-        cmdin.value = ""
-    }
+document.querySelector(".leftbtn").onclick = ()=>{
+    console.connect()
+    console.send()
 }

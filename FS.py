@@ -12,7 +12,7 @@ class FS:
         os.system(";".join([
             f'mkdir {self.path()}',
             f'mkdir {self.path}/src',
-            f'cp {homedir}/dulang/dulsocket {self.path()}/dulang',
+            f'cp {homedir}/dulang/dulang {self.path()}/dulang',
             f'mkdir {self.path()}/src',
             f'echo \"write \"hello world\"\" > {self.path()}/src/main.dul'
         ]))

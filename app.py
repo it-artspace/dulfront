@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
 from FS import FS
+from vmconn import ConPool
 
 
 client = MongoClient('localhost', 27017)
@@ -17,7 +18,8 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def process():
-    return render_template('index.html')
+    return render_template('dashboard.html')
+
 
 @app.route('/getfiles')
 def retfiles():
@@ -39,6 +41,14 @@ def savefile():
     fcontent = request.get_data()
     FS(uid).save_file(fname, fcontent)
     return "success"
+
+
+@socketio.on("command")
+def connect(o):
+    uid = o["uid"]
+    fname = o["fname"]
+    print(o)
+    ConPool.get_connection(uid).react(f'launch {fname}', socketio)
 
 
 if __name__ == "__main__":

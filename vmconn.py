@@ -1,6 +1,7 @@
 import os
 from home import homedir
 import socket
+import threading
 
 
 class VmConnection:
@@ -9,17 +10,32 @@ class VmConnection:
         # take address of own place + sock
         cmd = f'nohup {homedir}/user_space/{uid}/dulang &'
         os.system(cmd)
-        self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-        self.sock.connect(f'{homedir}/user_space/{uid}/dulsock')
+        self.uid = uid
+        self.sock = None
         if not self.sock:
             pass
 
-    def react(self, message):
+    def react(self, message, ws):
+        self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        message_items = message.split()
+        message_items[1] = f'{homedir}/user_space/{self.uid}/src/{message_items[1]}'
+        message = " ".join(message_items)
+        print(message)
+        self.sock.connect(f'{homedir}/user_space/{self.uid}/addr')
         self.sock.send(message.encode("utf-8"))
-        data = ""
-        while "--end--" not in data:
-            data += self.sock.recv(1024)
-        return data.replace("--end--", "\n")
+
+        t = threading.Thread(target=self.send_answer, args=(ws, ))
+        t.daemon = True
+        t.start()
+
+    def send_answer(self, ws):
+        while True:
+            data = self.sock.recv(1024)
+            if not data:
+                break
+            ws.emit("output", data)
+
+
 
 
 class _ConPool:
@@ -27,7 +43,7 @@ class _ConPool:
         self.conns = {}
 
     def get_connection(self, uid):
-        if uid in self.conns:
+        if uid not in self.conns:
             self.conns[uid] = VmConnection(uid)
         return self.conns[uid]
 

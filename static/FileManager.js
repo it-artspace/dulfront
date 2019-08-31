@@ -1,181 +1,89 @@
-import { Account } from "./account.js" 
-"use strict"
-function dyn_elem(classname){
+function dynElem(className){
     let node = document.createElement("div")
-    node.classList.add(classname)
+    node.classList.add(className)
     return node
 }
 
+// fobject is a json represented kinda {name:"", isDir:false, [children:[]]}
+// not having children doesnt mean not being a directory
+/* 
+directory:
+|--->dirhdr:
+|    |--->svg as innerhtml   
+|    |--->dirname
+|
+|--->dircontent:
+|    |--->dirlcont:
+|    |    |--->dirline
+|    |
+|    |--->dirmaincontent
+|
+|*-->contextmenu:
+|    |--->new
+|    |--->delete
+|    |--->rename
+
+file:
+|--->svg (added via innerhtml?)
+|--->filename
 
 
-function set_hover_color(color){
-    this.onmouseover = ()=>{
-        this.style.backgroundColor = color
-    }
-    this.onmouseout = ()=>{
-        this.style.backgroundColor = null
-    }
-}
+*/
 
-function setValue(val){
-    this.value = val
-    render_lineno(val.split("\n").length)
-}
-
-function request(path, callback=null, args = null){
-    let xhr = new XMLHttpRequest()
-    let param = path
-    if(args != null){
-        param += "?"+Object.entries(args).map(([k, v])=>{
-            return k+"="+v
-        }).join("&")
-    }
-    xhr.open("GET", param)
-    xhr.onload = ()=>{
-        callback(xhr.responseText)
-    }
-    xhr.send()
-}
-
-let CodeInput = document.getElementById("fcontent")
-let File_node = document.querySelector(".fcontainer")
-let File_new = document.querySelector(".fcontainer .add_file")
-let File_name_input = document.querySelector(".fcontainer input")
-let new_f_btn = document.querySelector(".fcontainer .aficwrapper")
-new_f_btn.onmouseover = ()=>{
-    File_name_input.style.display = "block"
-    new_f_btn.style.display = "none"
-    File_name_input.focus()
-}
+let dirsvg  = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>`
+let filesvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/><path d="M0 0h24v24H0z" fill="none"/></svg>`
 
 
-
-File_name_input.onkeydown = (e)=>{
-    if(e.key == "Enter"){
-        e.preventDefault()
-        let name = File_name_input.value
-        FileManager.add_item(name)
-        File_name_input.value = ""
-        File_name_input.style.display = "none";
-        new_f_btn.style.display = "flex"
-    }
-}
-
-File_name_input.onmouseout = ()=>{
-    File_name_input.style.display = "none";
-    new_f_btn.style.display = "flex"
-}
-let FileManager = {
-    active:null,
-    add_item(name){
-        let node = dyn_elem("verttab")
-        let fname = dyn_elem("main")
-        let delim = dyn_elem("delimiter")
-        fname.innerHTML = name
-        node.name = name
-        node.delim = delim
-        node.appendChild(fname)
-        node.appendChild(delim)
-        node.onclick = ()=>{
-            if(FileManager.active)
-                FileManager.active.delim.removeAttribute("active")
-            FileManager.active = node
-            node.delim.setAttribute("active", "true")
-            FileManager.get_file()
+function createFileNode(fobject){
+    if(fobject.isDir){
+        let node    = dynElem("directory")
+        let hdr     = dynElem("dirhdr")
+        let content = dynElem("dircontent")
+        let linecont= dynElem("dirlcont")
+        let name    = dynElem("dirname")
+        let line    = dynElem("dirline")
+        let maincont= dynElem("dirmaincontent")
+        name.innerText = fobject.name
+        hdr.innerHTML += dirsvg;
+        node.appendChild(hdr)
+        node.appendChild(content)
+        hdr.appendChild(name)
+        maincont.setAttribute("closed", "true")
+        hdr.onclick = ()=>{
+            if(maincont.getAttribute("closed")){
+                maincont.removeAttribute("closed")
+            } else {
+                maincont.setAttribute("closed", "true")
+            }
         }
-        File_node.insertBefore(node, File_new)
-    },
-    get_file(){
-        let name = this.active.name
-        request("/getfile", answer=>setValue.call(CodeInput, answer), {uid:Account.vkid, name:name})
-    },
-    get_files(){
-        request("/getfiles", (answer)=>{
-            JSON.parse(answer).forEach(FileManager.add_item)
-            FileManager.active = document.querySelector(".verttab")
-            FileManager.active.delim.setAttribute("active", "true")
-            FileManager.get_file()
-        },{uid:Account.vkid})
-    },
-    save_file(){
-        let xhr = new XMLHttpRequest()
-        xhr.open("POST", "/save_file")
-        xhr.setRequestHeader('Content-type', 'text-plain')
-        xhr.send(CodeInput.value)
-    }
-}
-
-if(Account.valid_id()){
-    FileManager.get_files()
-
-} else {
-    document.querySelector(".fcontainer input").style.display = "none"
-}
-let lineno_wrapper = document.querySelector(".lineno")
-
-function render_lineno(count){
-    while(lineno_wrapper.children.length > count){
-        lineno_wrapper.children[lineno_wrapper.children.length - 1].remove()
-        return
-    }
-    while(lineno_wrapper.children.length < count){
-       let node = dyn_elem("lineno_item")
-        node.innerHTML = lineno_wrapper.children.length + 1
-        lineno_wrapper.appendChild(node)
-        
-    }
-
-}
-let mainblock = document.querySelector(".code")
-
-let title = document.querySelector(".title")
-title.onclick = ()=>{
-    if(title.getAttribute("files_shown")=="true"){
-        document.querySelector(".leftwrapper").style.display = "none"
-        title.setAttribute("files_shown", "false")
-        mainblock.style.zIndex = 1
+        content.appendChild(linecont)
+        linecont.appendChild(line)
+        content.appendChild(maincont)
+        for(let childNode of fobject.children){
+            maincont.appendChild( createFileNode( childNode ) )
+        }
+        return node
     } else {
-        document.querySelector(".leftwrapper").style.display = "flex"
-        title.setAttribute("files_shown", "true")
-        mainblock.style.zIndex = -1
+        let node    = dynElem("file")
+        node.innerHTML += filesvg
+        let name    = dynElem("filename")
+        name.innerText = fobject.name
+        name.onclick = ()=>{
+            //goto editor
+        }
+        node.appendChild(name)
+        return node
     }
 }
 
-if(window.innerHeight > window.innerWidth){
-    title.onclick()
-    
-    mainblock.style.position = "fixed"
-    mainblock.style.top = "8vh"
-    mainblock.style.left = 0
-    mainblock.style.height = "100%"
-    mainblock.style.width = "100%"
-    
-}
-    
+let testfs = {name:"project1", isDir:true, children:[
+    {name:"src", isDir:true, children:[
+        {name: "main.dul", isDir:false},
+        {name: "test", isDir:true, children:[
+            {name: "test1.dul", isDir:false}
+        ]}
+    ]},
+    {name:"buildscript", isDir:false}
+]}
 
-CodeInput.onkeydown = (e)=>{
-    if(e.keyCode == 9){
-        e.preventDefault()
-        let start = CodeInput.selectionStart
-        let end = CodeInput.selectionEnd
-        CodeInput.value = CodeInput.value.substring(0, start) + "\t" + CodeInput.value.substring(end)
-        CodeInput.selectionStart = 
-        CodeInput.selectionEnd = start + 1
-    }
-    if(e.keyCode == 13 || e.keyCode == 8){
-        let lineno = CodeInput.value.split("\n").length + 1
-        render_lineno(lineno)
-    }
-}
-let lineno = CodeInput.value.split("\n").length + 1
-render_lineno(lineno)
-
-CodeInput.onblur = ()=>{
-    let content = CodeInput.value
-    let name = FileManager.active.name
-    let uid = Account.vkid
-    let xhr = new XMLHttpRequest()
-    xhr.open("POST", `/save_file?uid=${uid}&fname=${name}`)
-    xhr.setRequestHeader('Content-type', 'text-plain')
-    xhr.send(content)
-}
+document.getElementById("explorer").appendChild( createFileNode(testfs) )

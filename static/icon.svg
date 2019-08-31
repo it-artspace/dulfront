@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="3656px" height="3342px" viewBox="0 0 3656 3342" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <rect id="Rectangle" fill="#212121" x="0" y="0" width="3656" height="3342"></rect>
+            <polygon id="Triangle" fill="#FF8F00" points="1232.05348 1256.71833 1827.10697 1511.97168 637 1511.97168"></polygon>
+            <polygon id="Triangle" fill="#FF8F00" transform="translate(1529.580224, 1256.718331) rotate(-90.000000) translate(-1529.580224, -1256.718331) " points="1529.58022 959.19159 1788.29855 1554.24507 1270.86189 1554.24507"></polygon>
+            <polygon id="Triangle" fill="#534BAE" transform="translate(2002.918221, 1773.000000) rotate(90.000000) translate(-2002.918221, -1773.000000) " points="2002.91822 1597.18874 2777.91822 1948.81126 1227.91822 1948.81126"></polygon>
+            <polygon id="Triangle" fill="#534BAE" transform="translate(1639.535759, 1830.172131) rotate(-90.000000) translate(-1639.535759, -1830.172131) " points="1639.53576 1641.42493 1958.8912 2018.91933 1320.18032 2018.91933"></polygon>
+            <polygon id="Triangle" fill="#FF8F00" transform="translate(1451.376555, 1670.783159) rotate(180.000000) translate(-1451.376555, -1670.783159) " points="1451.37655 1510.81669 1827.10697 1830.74963 1075.64614 1830.74963"></polygon>
+            <polygon id="Triangle" fill="#534BAE" transform="translate(2176.965485, 1385.500000) rotate(180.000000) translate(-2176.965485, -1385.500000) " points="2176.96549 998 2528 1773 1825.93097 1773"></polygon>
+        </g>
+    </g>
+</svg>

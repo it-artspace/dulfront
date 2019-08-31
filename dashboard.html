@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="static/basic.css">
+        <link rel="stylesheet" href="static/auth.css">
+        <link rel="stylesheet" href="static/Task.css">
+        <link rel="stylesheet" href="static/files.css">
+        <!--<script type="text/javascript" src="https://vk.com/js/api/openapi.js?162"></script>-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="static/FileManager.js" type="module"></script>
+        <title>
+            Dashboard
+        </title>
+    </head>
+<body>
+    <div class = "allwrapper">
+        <div class = "titlewrapper">
+            <div class = "title">
+                Dashboard
+            </div>
+        </div>
+        <div class="mainwrapper">
+            <div class="leftcol">
+                <div class = "fcontainer">
+                </div>
+            </div>
+            <div class = "mainblock">
+                <div class="dcname">
+                    project 1
+                </div>
+                <div id="explorer">
+
+                </div>
+                <div class="ctrlbtn">
+                    run
+                </div>
+                <div class="ctrlbtn">
+                    console
+                </div>
+                    
+            </div>
+            <div class = "maindelim"></div>
+            <div class = "mainblock">
+                <div class="taskcontainer">
+                    <div class="taskhdr">
+                        Tasks
+                    </div>
+                    <div class="taskcatcont">
+                        <div class="taskcat">
+                            ToDo
+                            <div class="taskchoice"></div>
+                        </div>
+                        <div class="taskdelim"></div>
+                        <div class="taskcat">
+                            In Progress
+                            <div class="taskchoice"></div>
+                        </div>
+                        <div class="taskdelim"></div>
+                        <div class="taskcat" active="true">
+                            Done
+                            <div class="taskchoice" active="true"></div>
+                        </div>
+                    </div>
+                    <div class="taskwidgetcont">
+                        {% for i in range (11) %}
+                        <div class="taskwidget">
+                                <div class="twheader">
+                                    Трахнуть ослика
+                                </div>
+                                <div class="twcontent">
+                                    Даню
+                                </div>
+                                <div class = "twfooter" progress="done">
+                                    Завершено
+                                </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="screen_block">
+        <!--auth screen overlay-->
+    </div>
+</body>
+</html>
