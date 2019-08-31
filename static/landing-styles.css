@@ -43,14 +43,14 @@ html, body{
     top:0;
     display: flex;
     flex:0 0 auto;
-    margin:2rem;
     font-size: 2rem;
-    background: #212121CC;
+    background: #121212CC;
     color:var(--color-primary-light);
     border-bottom: 1px solid #999999;
 }
 .titlewrapper > img{
-    max-height: 8rem;
+    max-height: 4rem;
+    align-self: center;
     flex:0 0 auto;
     width: auto;
     height: auto;
@@ -175,7 +175,13 @@ html, body{
     font-size:2rem;
     color:#BBBBBB;
 }
-
+.bargcont{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    padding-left: 5rem;
+    flex:0 0 auto;
+}
 .boast_arg{
     border-left: 1px solid #999999;
     padding: 2rem;

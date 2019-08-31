@@ -21,8 +21,8 @@ boast.onmouseover = ()=>{
 
 let arguments_ = [
     ["", "no explicit self", "consize lambdas", "convinient singletons"],
-    ["", "appropriate this", "no let-var-const", "no voodoo type casting"],
-    ["", "up to 3 times less code", "convinient singletons"]
+    ["", "appropriate this", "no let-var-const", "no voodoo type casting", "async keyword"],
+    ["", "up to 3 times less code", "convinient singletons", "easy async", "dynamic object semi-prototyped inheritance"]
 ]
 let base_arg = document.querySelector("#barg")
 let selectors = document.querySelectorAll(".boast_selector")
@@ -48,4 +48,14 @@ document.querySelector("#comm").onclick = ()=>{
 }
 document.querySelector("#togit").onclick = ()=>{
     window.location.href = "https://github.com//Orfund/dulang"
+}
+
+document.querySelector(".syntax_demo > svg").onclick = ()=>{
+    let xhr = new XMLHttpRequest()
+    xhr.open("POST", "/exec")
+    xhr.setRequestHeader("Content-type", "text-plain")
+    xhr.onload = ()=>{
+        alert(xhr.responseText)
+    }
+    xhr.send(document.querySelector(".syntax_demo textarea").value)
 }
