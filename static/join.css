@@ -1,0 +1,60 @@
+.roleselector{
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    display: flex;
+    padding:1rem;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.role{
+    display: flex;
+    background: #121212;
+    font-size: 1.5rem;
+    color:#AAAAAA;
+    padding:2rem;
+    margin:1rem;
+    flex: 0 1 10vw;
+    border-radius: 1rem;
+}
+
+.role[selected="true"]{
+    box-shadow: 0 0 0.5rem var(--color-primary-light);
+    color:var(--color-secondary);
+}
+
+.role:hover{
+    box-shadow: 0 0 0.5rem #AAAAAA;
+}
+
+.roledesc{
+    display: flex;
+    color:#AAAAAA;
+    padding-left:10vw;
+    flex-direction: column;
+}
+.role_skill{
+    border-left: 1px solid #999999;
+    padding: 2rem;
+    font-size:1.5rem;
+    font-weight: 700;
+    color:#BBBBBB;
+}
+#work{
+    font-size: 1.5rem;
+}
+.mainscroller input{
+    font-size:2rem;
+    background-color: #222222;
+    border-radius: 0.5rem;
+    border: 1px solid #999999;
+    color: #AAAAAA;
+    margin:2rem;
+    padding:1rem;
+    align-self: center;
+    outline: none;
+}
+.mainscroller .actbtn{
+    align-self: center;
+    font-size:1.5rem;
+}
