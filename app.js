@@ -3,10 +3,10 @@ let https = require('https');
 let launcher = require("child_process");
 let fs      = require("fs");
 let express = require("express");
-/*const options = {
+const options = {
     key: fs.readFileSync('../key.pem'),
     cert: fs.readFileSync('../cert.pem')
-};*/
+};
 const app = express();
 app.use(express.static(__dirname));
 app.use("/exec", (req, res)=>{
@@ -47,4 +47,4 @@ app.use("/", (_, res)=>{
 });
 
 http.createServer(app).listen(80);
-//https.createServer(options, app).listen(443);
+https.createServer(options, app).listen(443);
