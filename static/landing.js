@@ -4,22 +4,7 @@ document.querySelector(".titlewrapper img").onclick = ()=>{
 document.querySelector(".title").onclick = ()=>{
     window.location.href="/";
 };
-let editor = document.querySelector("#coder");
 
-editor.onkeydown = (e)=>{
-    let keyCode = e.keyCode || e.which;
-    if (keyCode === 9) {
-        e.preventDefault();
-        let start = editor.selectionStart;
-        let end = editor.selectionEnd;
-        editor.value = editor.value.substring(0, start)
-                + "\t"
-                + editor.value.substring(end);
-
-        editor.selectionStart =
-        editor.selectionEnd = start + 1
-    }
-};
 let bmenu = document.querySelector(".bwrapper");
 let boast = document.querySelector(".boast_selector");
 boast.onmouseover = ()=>{
@@ -68,15 +53,7 @@ document.querySelector("#togit").onclick = ()=>{
     window.location.href = release.src
 };
 
-document.querySelector(".syntax_demo > svg").onclick = ()=>{
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/exec");
-    xhr.setRequestHeader("Content-type", "text-plain");
-    xhr.onload = ()=>{
-        document.querySelector(".output").value = xhr.responseText
-    };
-    xhr.send(document.querySelector(".syntax_demo textarea").value)
-};
+
 document.querySelector(".joinbtn").onclick = ()=>{
     window.location.href = "/join"
 }

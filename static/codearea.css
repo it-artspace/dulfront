@@ -2,8 +2,10 @@
     position: relative;
     font-size: 1.5rem;
     color:#AAAAAA;
-    flex:1 0 auto;
+    flex:4 0 auto;
     padding:1rem;
+    overflow: scroll;
+    max-height: 100%;
 }
 .codewrapper > .overlay{
     display: block;
@@ -16,6 +18,19 @@
     z-index: 1;
 }
 
+.codewrapper > svg{
+    position: absolute;
+    top:2rem;
+    border-radius: 32px;
+    right: 2rem;
+    z-index: 3;
+    fill:var(--color-secondary);
+}
+.codewrapper > svg:hover{
+    box-shadow: 0 0 1rem var(--color-primary-light);
+}
+
+
 .codewrapper textarea{
     display: block;
     position: absolute;
@@ -23,7 +38,7 @@
     top:0;
     left: 0;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 24px;
     color:transparent;
     caret-color: #AAAAAA;
     resize: none;
@@ -33,19 +48,43 @@
     width: 100%;
     height: 100%;
     z-index: 2;
+    letter-spacing: 1px;
 }
 
+.overlay  span{
+    margin: 0;
+    padding: 0;
+}
 .overlay > div{
+    letter-spacing: 1px;
+    font-size: 24px;
     white-space: pre-wrap;
-    display: inline;
+    word-wrap: break-word;
     color:#AAAAAA;
 }
 .overlay  .keyword{
-    white-space: nowrap;
+    white-space: pre-wrap;
     color:var(--color-secondary);
 }
 
 .overlay  .literal{
-    white-space: nowrap;
+    white-space: pre-wrap;
     color:var(--color-primary-light);
 }
+
+.term{
+    display: none;
+    flex: 1 0 auto;
+    background: #12121266;
+}
+.term[output="true"]{
+    display: block;
+}
+
+.codewidget{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vw;
+}
+

@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/landing-styles.css">
-    <script type="module" src="static/editor.js"></script>
+    <link rel="stylesheet" href="static/codearea.css">
+    <script type="module" src="static/codearea.js"></script>
+    <script type="module" src="static/landing.js"></script>
 </head>
 <body>
         <div class="titlewrapper">
@@ -59,12 +61,17 @@
        <div class="semiheader" style="margin-bottom:1rem;">
            Try online
        </div>
-       <div class="syntax_demo">
-           <textarea id="coder">write "hello world"</textarea>
-
-<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2.02c-5.51 0-9.98 4.47-9.98 9.98s4.47 9.98 9.98 9.98 9.98-4.47 9.98-9.98S17.51 2.02 12 2.02zM11.48 20v-6.26H8L13 4v6.26h3.35L11.48 20z"/></svg>
-           <textarea class="output" readonly="true"></textarea>
-       </div>
+       <div class="codewidget" style="background: #121212;height:50vh;width:50vw; align-self: center">
+            <div class="codewrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2.02c-5.51 0-9.98 4.47-9.98 9.98s4.47 9.98 9.98 9.98 9.98-4.47 9.98-9.98S17.51 2.02 12 2.02zM11.48 20v-6.26H8L13 4v6.26h3.35L11.48 20z"/></svg>
+                <div class="overlay">
+                    <div></div>
+                </div>
+                <textarea>write "hello from dulang!"</textarea>
+            </div>
+            <div class="term">
+            </div>
+        </div>
        <div class="semiheader">
             Like it?
        </div>
