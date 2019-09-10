@@ -73,6 +73,8 @@
 }
 
 .term{
+    color:#AAAAAA;
+    font-size: 1.5rem;
     display: none;
     flex: 1 0 auto;
     background: #12121266;
