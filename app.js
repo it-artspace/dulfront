@@ -42,6 +42,9 @@ app.use("/apply", (req, res)=>{
     https.get(encodeURI(`https://api.vk.com/method/messages.send?user_id=491569002&v=5.101&random_id=${Math.random()*5000}&message=${message}&access_token=${token}`))
     res.send("200 Ok")
 })
+app.use("/learn", (_, res)=>{
+    res.sendFile(__dirname + "/doc.html")
+})
 app.use("/", (_, res)=>{
     res.sendFile(__dirname+"/landing.html")
 });

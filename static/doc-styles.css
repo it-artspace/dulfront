@@ -1,0 +1,52 @@
+.pagewrapper{
+    display: flex;
+    flex:1 0 auto;
+    flex-direction: row;
+}
+
+.mainblock{
+    width: 50vw;
+    color:#AAAAAA;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex:1 0 auto;
+}
+.mainblock:nth-child(2){
+    border-left:1px solid #999999;
+}
+
+
+.mainhdr{
+    background: #121212;
+    padding: 0.5rem;
+    font-size:2rem;
+    text-align: center;
+    flex:0 0 auto;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.theme{
+    display: flex;
+    justify-content: center;
+    flex: 1 0 auto;
+}
+
+.mainhdr svg{
+    fill:#AAAAAA;
+}
+
+.mainhdr svg:hover{
+    fill:var(--color-secondary);
+}
+
+
+.mainbody{
+    font-size:1.5rem;
+    display: flex;
+    flex:1 0 auto;
+    flex-direction: column;
+    overflow: scroll;
+}

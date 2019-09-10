@@ -1,0 +1,51 @@
+.codewrapper{
+    position: relative;
+    font-size: 1.5rem;
+    color:#AAAAAA;
+    flex:1 0 auto;
+    padding:1rem;
+}
+.codewrapper > .overlay{
+    display: block;
+    position: absolute;
+    top:0;
+    left:0;
+    padding:1rem;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+.codewrapper textarea{
+    display: block;
+    position: absolute;
+    padding:1rem;
+    top:0;
+    left: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    color:transparent;
+    caret-color: #AAAAAA;
+    resize: none;
+    border:none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.overlay > div{
+    white-space: pre-wrap;
+    display: inline;
+    color:#AAAAAA;
+}
+.overlay  .keyword{
+    white-space: nowrap;
+    color:var(--color-secondary);
+}
+
+.overlay  .literal{
+    white-space: nowrap;
+    color:var(--color-primary-light);
+}
