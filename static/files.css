@@ -1,111 +1,57 @@
 .dircontainer{
-    display:flex;
-    flex:1;
-    flex-direction: column;
-    overflow: scroll;
-}
-
-.dcname{
-    position: sticky;
-    position: -webkit-sticky;
-    top:0;
-    background-color: #d8d8d8;
-    padding:0.5rem;
-    font-weight: 700;
-    color:var(--color-primary);
-    align-items: center;
-    justify-content: center;
     display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    color:#BBBBBB;
 }
 
-.directory{
-    background-color: #fafafa;
-    margin:0.5rem;
-    display:flex;
-    flex-direction: column;
-    flex:1 1 auto;
-    overflow-y: scroll;
-    max-height: 100%;
-    overflow-x: hidden;
-}
 .dirhdr{
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #fafafa;
-    flex:0 0 auto;
-    position: sticky;
-    position: -webkit-sticky;
-    top:0;
-}
-
-.dircontent{
-    background-color: #fafafa;
-    display:flex;
-    flex-direction: row;
-    align-items: stretch;
-    flex:1 1 100%;
-    max-height: 100%;
-}
-.dirlcont{
-    width:2rem;
-    display:flex;
-    flex:0 0 auto;
-    align-items: center;
-    justify-content: center;
-}
-.dirname{
-    font-size:1.3rem;
-    color:var(--color-primary);
-    font-weight: 700;
     display: flex;
     flex-direction: row;
-    padding:0.5rem;
     align-items: center;
+}
+
+.dirchildren{
+    display: flex;
+    flex-direction: column;
+    flex:1 0 auto;
+}
+.dircontent{
+    display: none;
+    flex-direction: row;
+}
+
+.dircontent[expanded="true"]{
+    display: flex;
+}
+
+.dircontainer svg{
+    fill:var(--color-secondary);
+}
+
+.dirname{
+    font-size:1.2rem;
+}
+
+.line{
+    background: #BBBBBB;
+    width: 2px;
 }
 .dirline{
-    width:2px;
-    height: 100%;
-    background-color: var(--color-primary);
-}
-
-.directory svg{
-    fill:var(--color-primary);
+    flex:0 0 auto;
+    width: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .file{
-    background-color:#fafafa;
-    padding:0.5rem;
-    align-items: center;
-    font-size:1.3rem;
-    color:var(--color-primary);
-    display:flex;
+    padding: 0.5rem;
+    display: flex;
     flex-direction: row;
-    font-weight:400;
-}
-.filename{
-    padding:0.5rem;
-}
-
-.fileblockcont{
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
-.bs{
-    position: sticky;
-    position: -webkit-sticky;
-    bottom:0;
-}
-.dirmaincontent{
-    overflow: scroll;
-    flex: 1 0 100%;
-}
 
-.dirmaincontent[closed="true"]{
-    display: none;
-}
-#explorer{
-    display: flex;
-    flex:1 0 auto;
+.file svg{
+    fill:#BBBBBB;
 }

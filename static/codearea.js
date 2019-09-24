@@ -12,12 +12,29 @@ function on_input(e){
 
         editor.selectionStart =
         editor.selectionEnd = start + 1
-        
+        editor.oninput()
     }
     if(e.key === "{"){
         e.preventDefault()
         let start = editor.selectionStart;
         let end = editor.selectionEnd;
+        let line_arr = editor.value.split("\n")
+        let lineno = 0
+        let sym_count = 0
+        while(sym_count <= start && lineno < line_arr.length){
+            sym_count += line_arr[lineno].length + 1
+            lineno++
+        }
+        lineno--;
+        let indent_string = line_arr[lineno].match(/( |\t)*/)[0]
+        editor.value = editor.value.substring(0, start)
+                + `{\n${indent_string}\t\n${indent_string}}`
+                + editor.value.substring(end);
+        editor.selectionStart =
+        editor.selectionEnd = start + `{\n${indent_string}\t`.length
+        editor.oninput()
+    }
+    if(e.key === "Enter"){
         let indentation = 0
         for(let strpos = 1 + editor.value.lastIndexOf("\n"); editor.value.charAt(strpos)==" " || editor.value.charAt(strpos)=="\t";  strpos++){
             if(editor.value.charAt(strpos)==" ")
@@ -25,11 +42,18 @@ function on_input(e){
             if(editor.value.charAt(strpos)=="\t")
                 indentation += 1
         }
+        let line_arr = editor.value.split("\n")
+        if(line_arr[line_arr.length - 1].search(/if|while|for|async|else/)!=-1)
+            indentation += 1;
+        e.preventDefault()
+        let start = editor.selectionStart;
+        let end = editor.selectionEnd;
+        let indent_string = `\n${"\t".repeat(indentation)}`
         editor.value = editor.value.substring(0, start)
-                + `{\n${"\t".repeat(indentation + 1)}\n${"\t".repeat(indentation)}}`
+                + indent_string
                 + editor.value.substring(end);
         editor.selectionStart =
-        editor.selectionEnd = start + `{\n${"\t".repeat(indentation + 1)}`.length
+        editor.selectionEnd = start + indent_string.length
         editor.oninput()
     }
     if(e.key ==="(" || e.key ==="[" || e.key ==="\""){
@@ -55,9 +79,17 @@ editor.onsroll = function(e){
 }
 editor.oninput = function(){
     overlay.innerHTML = editor.value
-    overlay.innerHTML = overlay.innerHTML.replace(/\d+|\".*\"|true|false/gm, `<span class="literal">$&</span>`)
-    overlay.innerHTML = overlay.innerHTML.replace(/\n/g, "<br>")
-    overlay.innerHTML = overlay.innerHTML.replace(/(if|while|write|else|{|}|this|fun|or|and|not|async|import|for|in|return|@)/g, `<span class="keyword">$&</span>`)
+    
+    overlay.innerHTML = overlay.innerHTML.replace(/[^\$]\d+|\".*\"|true|false/gm, `<span class="literal">$&</span>`)
+    .replace(/\$\d+/gm, `<span class="fmt_st">$&</span>`)
+    //then ones that don't
+    .replace(/(?:(^|[^\w\"]))(this|fun|or|and|not|in)(?:([^\w\"]|$))/g, `<span class="keyword">$&</span>`)
+    //firstly parse keywords that must start at begin of line
+    .replace(/{|}/gm,`<span class="keyword">$&</span>`)
+    .replace(/(?:(^|\t+))(if|while|write|else|async|import|for|return)(?:(\W|$))/gm, `<span class="keyword">$&</span>`)
+    //lets look for builtin functions
+    .replace(/(object|array|channel|range|str|obdump|typeof)|((\w+)(?=\.))/g, `<span class="bin">$&</span>`)
+    .replace(/\n/g, "<br>")
 }
 
 let term = document.querySelector(".term")

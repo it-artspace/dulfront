@@ -1,1 +1,1 @@
-write "hello from dulang!"
+write "hello from $0".format( "dulang" )

@@ -68,9 +68,19 @@
     color:var(--color-secondary);
 }
 
+.overlay .bin{
+    white-space: pre-wrap;
+    color:var(--color-pl-new);
+}
+
 .overlay  .literal{
     white-space: pre-wrap;
-    color:var(--color-primary-light);
+    color:var(--color-primary-light) !important;
+}
+
+.overlay .fmt_st{
+    white-space: pre-wrap;
+    color:var(--color-secondary);
 }
 
 .term{
