@@ -1,0 +1,21 @@
+.mainwrapper{
+    display: flex;
+    flex-direction: row;
+    flex: 1 0 auto;
+    max-height: 90vh;
+}
+
+.fcontainer{
+    display: flex;
+    flex: 1 1 auto;
+    max-width: 20vw;
+    width: 20vw;
+}
+
+.codeplace{
+    display: flex;
+    flex: 3 1 auto;
+    border-left: 1px solid #BBBBBB;
+    min-width: 80vw;
+    max-height: 90vh;
+}

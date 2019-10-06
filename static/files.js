@@ -22,7 +22,7 @@ let fsCreator = {
             node.content.appendChild(
                 //its kinda metaprogramming: we call function that matches type of the object
                 //null-safety is provided by this (elvis) operator
-                fsCreator[chNode.type+"Node"] || ((_)=>{}) (chNode)
+                (fsCreator[chNode.type+"Node"] || ((_)=>{})) (chNode)
             )
         }
         return node;
@@ -32,34 +32,25 @@ let fsCreator = {
         node.name = node.querySelector(".fname");
         node.name.innerText = fileInfo.name;
         node.onclick = function () {
+            document.querySelectorAll(".file")
+                .forEach(e=>e.removeAttribute("selected"));
+            node.setAttribute("selected", "true");
             getFileContent(node.name.innerText)
         };
         return node;
     }
 };
 
+function fetch_files(callback){
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `/getDir?uid=491569002`);
+    xhr.onload = ()=>callback(JSON.parse(xhr.responseText));
+    xhr.send()
+}
 
-let directory = {
-    type:"dir",
-    name:"project1",
-    children:[
-        {
-            type: "file",
-            name: "main.dul"
-        },
-        {
-            type:"dir",
-            name:"src",
-            children:[
-                {
-                    type:"file",
-                    name:"func.dul"
-                }
-            ]
-        }
-    ]
-};
 
-document.querySelector(".fcontainer").appendChild(
-    fsCreator.dirNode(directory)
-);
+
+
+fetch_files((res)=>{
+    document.querySelector(".fcontainer").appendChild(fsCreator.dirNode(res));
+});

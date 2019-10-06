@@ -1,1 +1,8 @@
-write "hello from $0".format( "dulang" )
+import "http.dul"
+import "fs/fs.ffi"
+app = http.app
+app.setStatic("/Users/jernicozz/Downloads/dulfront/develop")
+app.route("/"){ request ->
+	return app.sendPage("/Users/jernicozz/Downloads/dulfront/develop/landing.html")
+}
+app.launch(8080)

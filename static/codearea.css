@@ -89,6 +89,7 @@
     display: none;
     flex: 1 0 auto;
     background: #12121266;
+    padding: 0.5rem;
 }
 .term[output="true"]{
     display: block;
@@ -98,6 +99,5 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vw;
 }
 

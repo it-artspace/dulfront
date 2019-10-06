@@ -3,10 +3,12 @@ let https = require('https');
 let launcher = require("child_process");
 let fs      = require("fs");
 let express = require("express");
-const options = {
+let homedir = JSON.parse(fs.readFileSync("home.json").toString()).home;
+let walk = require("./DirWalk.js").walk;
+/*const options = {
     key: fs.readFileSync('../key.pem'),
     cert: fs.readFileSync('../cert.pem')
-};
+};*/
 const app = express();
 app.use(express.static(__dirname));
 app.use("/exec", (req, res)=>{
@@ -16,7 +18,7 @@ app.use("/exec", (req, res)=>{
     });
     req.on("end", ()=>{
         fs.writeFileSync("main.dul", content);
-        launcher.exec(`/root/Dulang/dulang launch ${__dirname}/main.dul`, (_, stdout, __)=>{
+        launcher.exec(`${homedir}/Dulang/dulang launch ${__dirname}/main.dul`, (_, stdout, __)=>{
             console.log(_);
             console.log(__);
             res.send(stdout);
@@ -34,6 +36,15 @@ app.use("/getRelease", (_, res)=>{
 app.use("/join", (_, res)=>{
     res.sendFile(__dirname+"/joinpage.html")
 });
+
+app.use("/getDir", (req, res)=>{
+    let uid = req.query.uid;
+    res.send({
+        name:"all projects",
+        type:"dir",
+        children:walk(`${homedir}/user_space/${uid}`)})
+});
+
 app.use("/apply", (req, res)=>{
     let vkid = req.query.id;
     let role = req.query.role;
@@ -56,4 +67,4 @@ app.use("/", (_, res)=>{
 
 
 http.createServer(app).listen(80);
-https.createServer(options, app).listen(443);
+//https.createServer(options, app).listen(443);

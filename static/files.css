@@ -52,6 +52,10 @@
     align-items: center;
 }
 
+.file[selected="true"]{
+    color:var(--color-secondary);
+}
+
 .file svg{
     fill:#BBBBBB;
 }

@@ -6,30 +6,58 @@
     <link rel="stylesheet" href="static/landing-styles.css">
     <link rel="stylesheet" href="static/codearea.css">
     <link rel="stylesheet" href="static/files.css">
-   <!-- <script type="module" src="static/codearea.js"></script>-->
+    <link rel="stylesheet" href="static/dashboard.css">
+    <script type="module" src="static/codearea.js"></script>
     <script type="module" src="static/files.js"></script>
 </head>
 <body>
-<div class = "fcontainer">
-    <!--template for fileworking-->
-    <template id ="dirtemp">
-        <div class="dircontainer">
-            <div class="dirhdr">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-                <div class = "dirname"></div>
-            </div>
-            <div class = "dircontent">
-                <div class = "dirline">
-                    <div class="line"></div>
-                </div>
-                <div class = "dirchildren"></div>
-            </div>
-        </div>
-        <div class="file">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-            <div class="fname"></div>
-        </div>
-    </template>
+<div class="titlewrapper">
+    <img src="static/logo5.svg" width="5rem" height="5rem">
+    <div class="title">
+        Dulang
+    </div>
+    <div class="rightblock" id="learn">Learn</div>
+    <div class="rightblock" id="comm" >Community</div>
+    <div class="rightblock" id="ide">Online IDE</div>
 </div>
+
+<div class="mainwrapper">
+    <div class = "fcontainer">
+        <!--template for fileworking-->
+        <template id ="dirtemp">
+            <div class="dircontainer">
+                <div class="dirhdr">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                    <div class = "dirname"></div>
+                </div>
+                <div class = "dircontent">
+                    <div class = "dirline">
+                        <div class="line"></div>
+                    </div>
+                    <div class = "dirchildren"></div>
+                </div>
+            </div>
+            <div class="file">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                <div class="fname"></div>
+            </div>
+        </template>
+    </div>
+    <div class="codeplace">
+        <div class="codewidget" >
+            <div class="codewrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 2.02c-5.51 0-9.98 4.47-9.98 9.98s4.47 9.98 9.98 9.98 9.98-4.47 9.98-9.98S17.51 2.02 12 2.02zM11.48 20v-6.26H8L13 4v6.26h3.35L11.48 20z"/></svg>
+                <div class="overlay">
+                    <div></div>
+                </div>
+                <textarea>write "hello from dulang!"</textarea>
+            </div>
+            <div class="term">
+            </div>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
